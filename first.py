@@ -7,7 +7,7 @@ def sudy_nebo_lichy(cislo):
         print(f"Číslo {cislo} je liché")
 
 
-sudy_nebo_lichy(1)
+sudy_nebo_lichy(5)
 
-sudy_nebo_lichy(3)
+sudy_nebo_lichy(1000000)
 
