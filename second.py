@@ -13,16 +13,22 @@ def cislo_text(cislo):
     
     cislo = int(cislo)
 
-    if cislo in jednotky:
-        return jednotky[cislo]
+    if cislo > 100:
+        return(f"Tvoje číslo {cislo} je moc vysoké")
 
-    elif cislo in desitky:
-        return desitky[cislo]
+    else:
 
-    elif 20 < cislo < 100:
-        desitka = (cislo // 10) * 10
-        jednotka = cislo % 10
-        return desitky[desitka] + jednotky[jednotka]
+        if cislo in jednotky:
+            return jednotky[cislo]
+
+        elif cislo in desitky:
+            return desitky[cislo]
+
+        elif 20 < cislo < 100:
+            desitka = (cislo // 10) * 10
+            jednotka = cislo % 10
+            return desitky[desitka] + " " + jednotky[jednotka]
+    
 
 if __name__ == "__main__":
     cislo = input("Zadej číslo: ")
