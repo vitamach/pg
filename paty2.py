@@ -2,7 +2,7 @@ from paty import jaccardova_vzdalenost_mnozin
 from paty1 import levensteinova_vzdalenost
 
 def deduplikace_dotazu(dotazy):
-    unikaty = []
+    unikaty = [dotazy[0]]
 
     for i in range(len(dotazy)):
         je_unikatni = True
@@ -35,8 +35,13 @@ if __name__ == "__main__":
     dotaz3 = {
         "dotaz": "sesnam",
         "serp": ["https://www.jcu.cz", "https://www.czu.cz", "https://www.cvut.cz", "https://www.uk.cz"]
+    
+    } 
+    dotaz4 = {
+        "dotaz": "google",
+        "serp": ["https://www.google.com", "https://maps.google.com", "https://www.gmail.com"]
     }
-    vysledky = deduplikace_dotazu([dotaz1, dotaz2, dotaz3])
+    vysledky = deduplikace_dotazu([dotaz1, dotaz2, dotaz3, dotaz4])
 
     for vysledek in vysledky:
         print(f"Dotaz: {vysledek['dotaz']}, SERP: {vysledek['serp']}")
