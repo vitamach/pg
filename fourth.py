@@ -48,13 +48,13 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
 
   
     elif typ_figurky == "věž":
-        if delta_radek == 0 or delta_sloupec == 0:  # Pohyb po řádku nebo sloupci
+        if delta_radek == 0 or delta_sloupec == 0:  
             return je_volna_cesta(aktualni_pozice, cilova_pozice)
         return False
 
    
     elif typ_figurky == "střelec":
-        if abs(delta_radek) == abs(delta_sloupec):  # Diagonální pohyb
+        if abs(delta_radek) == abs(delta_sloupec):  
             return je_volna_cesta(aktualni_pozice, cilova_pozice)
         return False
 
