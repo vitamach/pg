@@ -7,8 +7,9 @@ def nacti_csv(soubor):
         reader = csv.reader(file)
         for radek in reader:
             seznam.append(radek)
-
     return seznam
+
+def spoj_data()
 
 if __name__ == "__main__": 
     try:
