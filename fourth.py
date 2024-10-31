@@ -1,23 +1,19 @@
 def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
-    # Získáme řádek a sloupec cílové pozice
+    
     radek, sloupec = cilova_pozice
-    # Kontrola, zda cílová pozice je uvnitř šachovnice
+    
     if not (1 <= radek <= 8 and 1 <= sloupec <= 8):
         return False
     
-    # Kontrola, zda cílová pozice není obsazena jinou figurou
     if cilova_pozice in obsazene_pozice:
         return False
     
-    # Zjištění typu figurky a její aktuální pozice
     typ_figurky = figurka["typ"]
     aktualni_pozice = figurka["pozice"]
     
-    # Výpočet rozdílu pozic na řádcích a sloupcích
     delta_radek = cilova_pozice[0] - aktualni_pozice[0]
     delta_sloupec = cilova_pozice[1] - aktualni_pozice[1]
 
-    # Povolené pohyby pro každou figurku
     pohyby = {
         "pěšec": [(1, 0), (2, 0)] if aktualni_pozice[0] == 2 else [(1, 0)],
         "jezdec": [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)],
@@ -39,7 +35,6 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
             pozice = (pozice[0] + krok_radek, pozice[1] + krok_sloupec)
         return True
 
-    # Definování pohybových pravidel pro každou figurku
     if typ_figurky == "pěšec":
         mozne_tahy = [(pozice[0] + aktualni_pozice[0], pozice[1] + aktualni_pozice[1]) 
                       for pozice in pohyby["pěšec"]]
@@ -70,7 +65,6 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
 
     return False
 
-# Testování s výstupy True nebo False
 if __name__ == "__main__":
     pesec = {"typ": "pěšec", "pozice": (2, 2)}
     jezdec = {"typ": "jezdec", "pozice": (3, 3)}
