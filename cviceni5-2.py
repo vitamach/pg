@@ -17,4 +17,4 @@ if __name__ == "__main__":
         csv_data2 = nacti_csv(soubor2)
 
     except Exception:
-        
+        pass
