@@ -1,29 +1,34 @@
 import sys
 
-
-class ChybaNeniCislo(Exception):
+class ChybaNeniObrazek(Exception):
     pass
 
-
-def vrat_data_ze_souboru(soubor):
-    otevreny_soubor = open(soubor, "r")
-    data = otevreny_soubor.read()
+def read_header(file_name, header_length):
     try:
-        cislo = int(data)
-    except ValueError:
-        raise ChybaNeniCislo
-    return cislo
+        with open(file_name, "rb") as otevreny_soubor:
+            return otevreny_soubor.read(header_length)
+        
+    except(FileNotFoundError, IOError):
+        raise ChybaNeniObrazek("Nelze načíst soubor nebo neexistuje")
 
+def detect_format(header):
+    if header.startswith(b'\xff\xd8') and header.endswith(b'\xff\xd9'):
+        return "JPEG"
+    elif header.startswith(b'GIF87a') or header.startswith(b'GIF89a'):
+        return "GIF"
+    elif header.startswith(b'\x89PNG\r\n\x1a\n'):
+        return "PNG"
+    return "Neznámý formát"
 
 if __name__ == "__main__":
+    try: 
+        file_name = sys.argv[1]
+        header = read_header(file_name)
 
-    try:
-        soub = sys.argv[1]
-        vysledek = vrat_data_ze_souboru(soub)
-        print(vysledek)
+        format = detect_format
+
     except IndexError:
-        print("Zadej nazev soboru")
-    except FileNotFoundError:
-        print("Soubor neexistuje")
-    except ChybaNeniCislo:
-        print("Nase chyba neni cislo")
+        raise ValueError("Zadej název souboru jako argument")
+    
+    except ChybaNeniObrazek as e:
+        raise ChybaNeniObrazek(f"Chyba: {e}")
