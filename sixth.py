@@ -45,11 +45,11 @@ if __name__ == "__main__":
             raise Exception("Není zadána URL adresa")
         
         url = sys.argv[1]
-        hrefs = download_url_and_get_all_hrefs(url)
+        all_hrefs = download_url_and_get_all_hrefs(url)
         
         # Výpis nalezených odkazů
         print("Nalezené odkazy:")
-        for href in hrefs:
+        for href in all_hrefs:
             print(href)
             
     except Exception as e:
