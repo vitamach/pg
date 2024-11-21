@@ -13,21 +13,17 @@ def download_url_and_get_all_hrefs(url):
     hrefs = []
     
     try:
-        # Stažení webové stránky
         response = requests.get(url)
         
-        # Kontrola status kódu
         if response.status_code != 200:
             raise Exception(f"Chyba při stahování stránky: HTTP {response.status_code}")
         
         # Parsování HTML pomocí BeautifulSoup
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # Nalezení všech odkazů (tagů <a>)
         for a_tag in soup.find_all('a'):
             href = a_tag.get('href')
             if href:
-                # Přidání odkazu do seznamu, pokud není None
                 hrefs.append(href)
     
     except requests.exceptions.RequestException as e:
@@ -40,14 +36,12 @@ def download_url_and_get_all_hrefs(url):
 
 if __name__ == "__main__":
     try:
-        # Kontrola, zda byl zadán argument s URL
         if len(sys.argv) < 2:
             raise Exception("Není zadána URL adresa")
         
         url = sys.argv[1]
         all_hrefs = download_url_and_get_all_hrefs(url)
         
-        # Výpis nalezených odkazů
         print("Nalezené odkazy:")
         for href in all_hrefs:
             print(href)
