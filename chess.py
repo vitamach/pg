@@ -9,16 +9,12 @@ class Piece(ABC):
         :param position: Aktuální pozice na šachovnici jako tuple (row, col).
         """
         self.__color = color
+        if not self.is_position_on_board(position):
+            raise ValueError(f"{self.__class__.__name__} je mimo hrací plochu na pozici {position}")
         self.__position = position
 
     @abstractmethod
     def possible_moves(self):
-        """
-        Vrací všechny možné pohyby figurky.
-        Musí být implementováno v podtřídách.
-        
-        :return: Seznam možných pozic [(row, col), ...].
-        """
         pass
 
     @staticmethod
@@ -34,11 +30,13 @@ class Piece(ABC):
         return self.__position
 
     @position.setter
-    def position(self, new_postion):
-        self.__position = new_postion
+    def position(self, new_position):
+        if not self.is_position_on_board(new_position):
+            raise ValueError(f"{self.__class__.__name__} nelze přesunout mimo hrací plochu na pozici {new_position}")
+        self.__position = new_position
 
     def __str__(self):
-        return f'Piece({self.color}) at position {self.position}'
+        return f'{self.__class__.__name__}({self.color}) at position {self.position}'
 
 
 class Pawn(Piece):
