@@ -8,7 +8,6 @@ def dec_to_bin(cislo):
     
     binary = ""
     
-    #
     while cislo > 0:
         
         binary = str(cislo % 2) + binary
