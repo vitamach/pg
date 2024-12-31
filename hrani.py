@@ -1,5 +1,3 @@
-#print(list(range(10,20,8)))
-
 def my_cislo(start, stop, step):
     
     cislo = []
