@@ -21,8 +21,8 @@ def fetch_and_save_data():
         
         if response.ok:
             data = response.json() #převod
-            
-            for post in data:
+
+            for post in data: #pro každý slovník
                 user_id = post['userId']
                 post['userName'] = user_names[user_id]
             
@@ -37,5 +37,6 @@ def fetch_and_save_data():
         return False
 
 if __name__ == "__main__":
+
     uspech = fetch_and_save_data()
     print("Data byla úspěšně stažena a uložena." if uspech else "Nastala chyba při zpracování dat.")
