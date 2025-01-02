@@ -24,7 +24,7 @@ def fetch_and_save_data():
 
             for post in data: #pro každý slovník
                 user_id = post['userId']
-                post['userName'] = user_names[user_id]
+                post['userName'] = user_names[user_id] #klíč
             
             with open('data.json', 'w', encoding='utf-8') as file:
                 json.dump(data, file, indent=2)
